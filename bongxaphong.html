@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bóng Xà Phòng</title>
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      
+      
+      :root {
+        /* Gradient sang trọng hơn với màu cam, nâu vàng và xanh */
+        --primary-gold: #d4a574;
+        --primary-green: #a8d5ba;
+        --primary-light: #f5e6d3;
+        --accent-warm: #c17a5e;
+        --accent-green: #7dbe9e;
+        --neutral-white: #faf8f5;
+        --neutral-gray: #e8e8e8;
+        --text-dark: #2f4f3d;
+        --text-light: #5a6b63;
+      }
+      
+            a:hover {
+            color: var(--primary-light);
+            }
+      
+            a:visited {
+              color: var(--primary-gold);
+            }
+      
+            a:active {
+              color: var(--accent-warm);
+            }
+      
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: var(--neutral-white);
+        color: var(--text-dark);
+        line-height: 1.6;
+        scroll-behavior: smooth;
+      }
+
+      /* ===== HEADER ===== */
+      header {
+        /* Gradient sang trọng: vàng - cam - xanh */
+        background: linear-gradient(
+          135deg,
+          #f5e6d3 0%,
+          #e8d4b8 50%,
+          #d4a574 100%
+        );
+        padding: 1vh 1.5rem;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 6px 20px rgba(209, 165, 116, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* Header sẽ ẩn/hiện khi scroll */
+      }
+
+      header.hide {
+        transform: translateY(-100%);
+      }
+
+      .logo {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        font-weight: 900;
+        color: var(--text-dark);
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, #c17a5e 0%, #a8d5ba 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }      
+      .logo-image {
+        width: 4vh;
+        height: 4vh;
+        background: linear-gradient(135deg, #c17a5e 0%, #a8d5ba 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .tagline {
+        font-size: 0.95rem;
+        color: var(--text-light);
+        font-weight: 500;
+        letter-spacing: 1px;
+      }
+
+      .nav-link{
+        color: var(--text-dark);
+      }
+
+      .nav-link:active{
+        color: var(--primary-gold);
+      }
+      /* ===== HAMBURGER MENU ===== */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0 0.5rem 0.5rem;
+        gap: 6px;
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        z-index: 110;
+      }
+
+      .hamburger span {
+        width: 28px;
+        height: 3px;
+        background: var(--text-dark);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(2.575px, 9.935px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(2.575px, -9.935px);
+      }
+
+      /* ===== NAVIGATION ===== */
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      nav.mobile-open {
+        /* Menu mobile mở */
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, #f5e6d3 0%, #e8d4b8 100%);
+        padding: 1.5rem;
+        gap: 1rem;
+        box-shadow: 0 8px 20px rgba(209, 165, 116, 0.2);
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--text-dark);
+        font-weight: 700;
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      nav a:hover,
+      nav a.active {
+        background: linear-gradient(
+          135deg,
+          rgba(193, 122, 94, 0.2) 0%,
+          rgba(125, 190, 158, 0.2) 100%
+        );
+        color: var(--accent-warm);
+      }
+
+      /* ===== MAIN CONTAINER ===== */
+      main {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        padding-top: 2rem;
+      }
+
+      section {
+        margin: 3rem 0;
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ===== SECTION TITLE ===== */
+      .section-title {
+        font-size: 2.2rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, #c17a5e 0%, #a8d5ba 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-align: center;
+        margin-bottom: 2.5rem;
+        letter-spacing: 1px;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #c17a5e 0%, #a8d5ba 100%);
+        border-radius: 2px;
+      }
+
+      /* ===== INTRODUCTION SECTION ===== */
+      .intro-card {
+        /* Gradient sang trọng cho intro card */
+        background: linear-gradient(
+          135deg,
+          #f5e6d3 0%,
+          rgba(212, 165, 116, 0.3) 50%,
+          rgba(168, 213, 186, 0.3) 100%
+        );
+        border-radius: 20px;
+        padding: 2.5rem 1.5rem;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(209, 165, 116, 0.15);
+        transition: transform 0.3s ease;
+        border: 2px solid rgba(193, 122, 94, 0.1);
+      }
+
+      .intro-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(209, 165, 116, 0.2);
+      }
+
+      .intro-card p {
+        font-size: 1.1rem;
+        color: var(--text-light);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+
+      .intro-image {
+        object-fit: cover;
+        width: 100%;
+        max-width: 400px;
+        height: 250px;
+        background: linear-gradient(
+          135deg,
+          #d4a574 0%,
+          #c17a5e 50%,
+          #a8d5ba 100%
+        );
+        border-radius: 15px;
+        margin: 1.5rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--neutral-white);
+        font-weight: 700;
+        font-size: 3rem;
+        box-shadow: 0 8px 20px rgba(193, 122, 94, 0.25);
+      }
+
+      /* ===== PRODUCTS SECTION ===== */
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(1fr, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .product-card {
+        background: var(--neutral-white);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(209, 165, 116, 0.12);
+        transition: all 0.3s ease;
+        border: 2px solid rgba(209, 165, 116, 0.1);
+        position: relative;
+      }
+
+      .product-card::before {
+        /* Thêm detail: glow effect ấm cúng */
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(193, 122, 94, 0.05) 0%,
+          transparent 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 32px rgba(209, 165, 116, 0.2);
+        border-color: #d4a574;
+      }
+
+      .product-card:hover::before {
+        opacity: 1;
+      }
+
+      .product-image {
+        object-fit: cover;
+        width: 100%;
+        height: 36vh;
+        background: linear-gradient(135deg, #f5e6d3 0%, #e8d4b8 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        color: rgba(193, 122, 94, 0.2);
+      }
+
+      .product-info {
+        padding: 1.5rem;
+      }
+
+      .product-name {
+        font-size: 1.3rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, #c17a5e 0%, #a8d5ba 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.8rem;
+        letter-spacing: 0.5px;
+      }
+
+      .product-desc {
+        font-size: 0.95rem;
+        color: var(--text-light);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+
+      .product-tag {
+        display: inline-block;
+        background: linear-gradient(
+          135deg,
+          rgba(193, 122, 94, 0.15) 0%,
+          rgba(125, 190, 158, 0.15) 100%
+        );
+        color: #c17a5e;
+        padding: 0.4rem 0.9rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        border: 1px solid rgba(193, 122, 94, 0.2);
+      }
+
+      /* ===== PROCESS SECTION ===== */
+      .process-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2rem;
+      }
+
+      .process-card {
+        background: var(--neutral-white);
+        border-radius: 15px;
+        padding: 2rem 1.5rem;
+        text-align: center;
+        box-shadow: 0 6px 20px rgba(209, 165, 116, 0.08);
+        border: 2px solid rgba(209, 165, 116, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .process-card::after {
+        /* Thêm detail: glow effect khi hover */
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(193, 122, 94, 0.05) 0%,
+          transparent 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      .process-card:hover {
+        transform: translateY(-6px);
+        border-color: #d4a574;
+        box-shadow: 0 10px 28px rgba(209, 165, 116, 0.2);
+      }
+
+      .process-card:hover::after {
+        opacity: 1;
+      }
+
+      .process-step {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #d4a574 0%, #c17a5e 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: var(--neutral-white);
+        margin: 0 auto 1.5rem;
+        box-shadow: 0 6px 16px rgba(193, 122, 94, 0.3);
+      }
+
+      .process-title {
+        font-size: 1.2rem;
+        font-weight: 900;
+        color: var(--text-dark);
+        margin-bottom: 0.8rem;
+        letter-spacing: 0.5px;
+      }
+
+      .process-desc {
+        font-size: 0.95rem;
+        color: var(--text-light);
+        line-height: 1.6;
+      }
+
+      /* ===== CTA SECTION ===== */
+      .cta-section {
+        /* Gradient sang trọng cho CTA */
+        background: linear-gradient(
+          135deg,
+          #d4a574 0%,
+          #c17a5e 50%,
+          #a8d5ba 100%
+        );
+        border-radius: 20px;
+        padding: 3rem 1.5rem;
+        text-align: center;
+        margin: 3rem 0;
+        color: var(--neutral-white);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 12px 40px rgba(193, 122, 94, 0.3);
+      }
+
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+      }
+
+      .cta-section::after {
+        /* Thêm detail: decorative element */
+        content: "";
+        position: absolute;
+        bottom: -50%;
+        left: -5%;
+        width: 250px;
+        height: 250px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+      }
+
+      .cta-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .cta-title {
+        font-size: 1.8rem;
+        font-weight: 900;
+        margin-bottom: 1rem;
+        letter-spacing: 1px;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.85;
+        }
+      }
+
+      .cta-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        opacity: 0.95;
+        font-weight: 500;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: var(--neutral-white);
+        color: #c17a5e;
+        padding: 1rem 2.5rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 900;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        letter-spacing: 0.5px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .cta-button:active {
+        transform: scale(0.98);
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        background: linear-gradient(135deg, #f5e6d3 0%, #e8d4b8 100%);
+        padding: 2rem 1.5rem;
+        text-align: center;
+        border-top: 3px solid rgba(209, 165, 116, 0.2);
+        margin-top: 3rem;
+      }
+
+      .footer-content {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .footer-text {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-top: 1.5rem;
+      }
+
+      .footer-links a {
+        color: #c17a5e;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--text-dark);
+      }
+
+      /* ===== SCROLL INDICATOR ===== */
+      .scroll-indicator {
+        text-align: center;
+        margin: 2rem 0;
+        animation: bounce 2s infinite;
+      }
+
+      .scroll-indicator span {
+        display: inline-block;
+        color: #c17a5e;
+        font-size: 1.5rem;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(10px);
+        }
+      }
+
+      /* ===== RESPONSIVE DESIGN ===== */
+      @media (max-width: 768px) {
+        header {
+          padding: 1.5rem 1rem;
+        }
+
+        .hamburger {
+          display: flex;
+        }
+
+        nav {
+          display: none;
+        }
+
+        nav.mobile-open {
+          display: flex !important;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .logo {
+          font-size: 1.6rem;
+        }
+
+        .cta-title {
+          font-size: 1.4rem;
+        }
+
+        .products-grid {
+          gap: 1.5rem;
+        }
+
+        section {
+          margin: 2rem 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .section-title {
+          font-size: 1.5rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .logo {
+          font-size: 1.4rem;
+        }
+
+        .cta-section {
+          padding: 2rem 1rem;
+        }
+
+        .cta-title {
+          font-size: 1.2rem;
+        }
+
+        .intro-card {
+          padding: 1.5rem 1rem;
+        }
+
+        header {
+          padding: 1.2rem 1rem;
+        }
+      }
+
+      /* ===== SMOOTH TRANSITIONS ===== */
+      .fade-in {
+        opacity: 0;
+        animation: fadeInUp 0.6s ease-out forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header id="header">
+      <div class="logo"><p>SOAP</p> <img src="./images/logo.png" class="logo-image" alt=""></div>
+      <p class="tagline">Xà phòng long lanh - Môi trường trong lành</p>
+      <!-- Thêm hamburger menu -->
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav id="nav-menu">
+        <a href="#intro" class="nav-link active">GIỚI THIỆU</a>
+        <a href="#products" class="nav-link">SẢN PHẨM</a>
+        <a href="#process" class="nav-link">QUY TRÌNH</a>
+      </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <!-- INTRODUCTION SECTION -->
+      <section id="intro">
+        <h2 class="section-title">✨ Giới Thiệu</h2>
+        <div class="intro-card">
+          <img
+            class="intro-image"
+            src="./images/gioithieu.jpg"
+            alt=""
+          />
+          <p>
+            Những chiếc xà phòng mang thông điệp xanh đến với mọi gia đình. Với tình yêu môi trường và mục tiêu giảm thiểu rác thải dầu ăn sử dụng nhiều trong sinh hoạt hằng ngày, Bóng Xà Phòng nhóm chúng em hân hạnh mang đến cho mọi người bộ sưu tập Nhất Thiên Địa, được lấy ý tưởng dựa trên sự tích Bánh chưng và Bánh dày của người Việt!
+          </p>
+          <p style="font-size: 0.95rem; opacity: 0.85">
+            Không cần là thợ thủ công, một chút ứng dụng hóa học cũng có thể thay đổi thế giới💚
+          </p>
+        </div>
+        <div class="scroll-indicator">
+          <span>↓</span>
+        </div>
+      </section>
+
+      <!-- PRODUCTS SECTION -->
+      <section id="products">
+        <h2 class="section-title">Bộ Sưu Tập Sản Phẩm</h2>
+        <div class="products-grid">
+          <!-- Product 1 -->
+          <div class="product-card">
+              <img class="product-image"
+                src="./images/banhday.jpg"
+                alt=""
+              />
+            </div>
+            <div class="product-info">
+              <div class="product-name">Bánh Dày</div>
+              <p class="product-desc">
+                Bánh dày được tạo hình tròn tượng trưng cho bầu trời rộng mở, gợi nhắc sự tuần hoàn tự nhiên. Sản phẩm sử dụng nguyên liệu sạch, thân thiện môi trường, hướng người dùng đến lối sống xanh. Mỗi bánh là lời nhắc giữ gìn không gian sống bền vững.
+              </p>
+              <span class="product-tag">TRỜI</span>
+            </div>
+
+          <!-- Product 2 -->
+          <div class="product-card">
+              <img class="product-image"
+                src="./images/banhtammoc.jpg"
+                alt=""
+              />
+            </div>
+            <div class="product-info">
+              <div class="product-name">Bánh Tâm Mộc</div>
+              <p class="product-desc">
+                Bánh Tâm Mộc mang hình trái tim như nhịp đập của thiên nhiên đang vẫy gọi chúng ta hòa chung. Mỗi lần sử dụng là một hành động nhỏ nhưng đầy tự hào, như góp thêm nhịp xanh cho trái đất.
+              </p>
+              <span class="product-tag">CON TIM</span>
+            </div>
+
+          <!-- Product 3 -->
+          <div class="product-card">
+              <img class="product-image"
+                src="./images/banhchung.jpg"
+                alt=""
+              />
+            </div>
+            <div class="product-info">
+              <div class="product-name">Bánh Chưng</div>
+              <p class="product-desc">
+                Mức độ sạch sẽ tối đa với tinh dầu chanh và gừng, hoàn hảo cho
+                da dầu và mụn.
+              </p>
+              <span class="product-tag">ĐẤT</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESS SECTION -->
+      <section id="process">
+        <h2 class="section-title">🔧 Tiến trình dự án</h2>
+      <div class="process-container">
+        <div class="process-card">
+          <div class="process-step">1</div>
+          <div class="process-title">Bàn bạc kinh phí</div>
+          <p class="process-desc">
+            Ngay sau buổi thuyết trình, cả nhóm ngồi lại để chốt những khoản cần chi, lựa chọn dụng cụ phù hợp và phân chia công việc cho chặng đường sắp tới.
+          </p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-step">2</div>
+          <div class="process-title">Thu thập dầu thừa</div>
+          <p class="process-desc">
+            Mỗi thành viên bắt đầu gom góp dầu ăn đã qua sử dụng từ gia đình và hàng xóm, vừa hồi hộp vừa lo lắng không biết lượng thu được có đủ cho các thử nghiệm hay không.
+          </p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-step">3</div>
+          <div class="process-title">Thí nghiệm lọc dầu</div>
+          <p class="process-desc">
+            Từ những mẻ dầu đặc quánh, nhóm thử nhiều cách lọc khác nhau. Lọc than khiến dầu đen kịt, lọc qua giấy thì chậm, nhưng từng giọt dầu trong dần lên khiến mọi nỗ lực trở nên đáng giá.
+          </p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-step">4</div>
+          <div class="process-title">Thí nghiệm làm xà phòng</div>
+          <p class="process-desc">
+            Đây là giai đoạn thử thách nhất. Có mẻ quá mềm, có mẻ không đông, có mẻ tách nước. Cả nhóm vừa thất vọng vừa kiên trì điều chỉnh từng chút để tìm được công thức ổn định.
+          </p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-step">5</div>
+          <div class="process-title">Chuẩn bị banner và trang trí triển lãm</div>
+          <p class="process-desc">
+            Nghĩ rằng sẽ mất nhiều thời gian, nhưng mọi thứ lại hoàn thiện nhanh hơn mong đợi khi các ý tưởng được kết nối mạch lạc.
+          </p>
+        </div>
+
+        <div class="process-card">
+          <div class="process-step">6</div>
+          <div class="process-title">Chuẩn bị cho ngày triển lãm</div>
+          <p class="process-desc">
+            Cả nhóm rà soát lại toàn bộ sản phẩm, trưng bày và nội dung trình bày, đồng thời chuẩn bị tinh thần cho ngày chia sẻ thành quả sau nhiều tuần nỗ lực.
+          </p>
+        </div>
+      </div>
+
+      </section>
+
+      <!-- CTA SECTION -->
+      <section class="cta-section">
+        <div class="cta-content">
+          <h2 class="cta-title">🌱 Cùng Tái Chế Với Chúng Mình Nhé! 🌱</h2>
+          <p class="cta-subtitle">
+            Mỗi lần bạn chọn xà phòng tự nhiên, bạn đang chọn cho một hành tinh
+            xanh hơn. Cùng nhau, chúng ta tạo nên sự thay đổi!
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-content">
+        <p class="footer-text">✨ Dự án xà phòng của Bóng Xà Phòng ✨</p>
+        <p class="footer-text" style="text-align: center">
+          Được hỗ trợ bởi AI và các phần mềm hỗ trợ khác
+          <br /><strong>Facebook: </strong
+          ><a style="color: #c17a5e;"
+            href="https://www.facebook.com/profile.php?id=61581767126157"
+            target="_blank"
+            >Bóng Xà Phòng</a
+          >
+          <br /><strong>Liên hệ(Trái Bơ): </strong
+          ><a style="color: #c17a5e;" href="tel:0901414708">090 141 4708</a>
+        </p>
+        <div class="footer-links">
+          <a href="#intro">Giới Thiệu</a>
+          <a href="#products">Sản Phẩm</a>
+          <a href="#process">Quy Trình</a>
+          <a href="#contact">Liên Hệ</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const navMenu = document.getElementById("nav-menu");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("mobile-open");
+      });
+
+      // Close menu when a link is clicked
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          hamburger.classList.remove("active");
+          navMenu.classList.remove("mobile-open");
+          document
+            .querySelectorAll(".nav-link")
+            .forEach((l) => l.classList.remove("active"));
+          link.classList.add("active");
+          const targetId = link.getAttribute("href");
+          document
+            .querySelector(targetId)
+            .scrollIntoView({ behavior: "smooth" });
+        });
+      });
+
+      let lastScrollTop = 0;
+      const header = document.getElementById("header");
+      const headerHeight = header.offsetHeight;
+
+      window.addEventListener("scroll", () => {
+        let scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop && scrollTop > headerHeight) {
+          // Scrolling DOWN
+          header.classList.add("hide");
+        } else {
+          // Scrolling UP
+          header.classList.remove("hide");
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      });
+
+
+
+      // CTA Button handler
+      function handleCTA() {
+        alert(
+          "🌱 Cảm ơn bạn đã quan tâm! Hãy tham dự triễn lãm của chúng mình để khám phá những sản phẩm tuyệt vời. 💚"
+        );
+      }
+
+      // Add fade-in animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll("section").forEach((section) => {
+        section.style.opacity = "0";
+        section.style.transform = "translateY(20px)";
+        section.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        observer.observe(section);
+      });
+    </script>
+  </body>
+</html>
