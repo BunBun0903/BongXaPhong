@@ -3,71 +3,74 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bóng Xà Phòng</title>
-    <!-- Font Awesome CDN -->
+    <link rel="icon" href="media/favicon.ico">
+    <title>Bóng Xà Phòng - Triển Lãm Nhất Thiên Địa</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-      
-      
-      
+
       :root {
-        /* Gradient sang trọng hơn với màu cam, nâu vàng và xanh */
-        --primary-gold: #d4a574;
-        --primary-green: #a8d5ba;
-        --primary-light: #f5e6d3;
-        --accent-warm: #c17a5e;
-        --accent-green: #7dbe9e;
-        --neutral-white: #faf8f5;
-        --neutral-gray: #e8e8e8;
-        --text-dark: #2f4f3d;
-        --text-light: #5a6b63;
+        /* PALETTE CỔ ĐIỂN & ẤM ÁP */
+        --bg-paper: #f9f5eb; /* Màu kem giấy cũ */
+        --antique-gold: #c5a059; /* Vàng đồng cổ */
+        --deep-bronze: #8c6b3e; /* Nâu đồng đậm */
+        --vintage-green: #4a6755; /* Xanh rêu trầm */
+        --warm-brown: #5d4037; /* Nâu đất ấm */
+        --text-ink: #2c241b; /* Màu mực đen nâu */
+        --text-muted: #594a42;
+        --card-bg: #fffdf9;
       }
-      
-            a:hover {
-            color: var(--primary-light);
-            }
-      
-            a:visited {
-              color: var(--primary-gold);
-            }
-      
-            a:active {
-              color: var(--accent-warm);
-            }
-      
+
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: var(--neutral-white);
-        color: var(--text-dark);
-        line-height: 1.6;
-        scroll-behavior: smooth;
+        font-family: "Lora", serif; /* Font chữ có chân cho phần nội dung */
+        background-color: var(--bg-paper);
+        color: var(--text-ink);
+        line-height: 1.8;
+        background-image: radial-gradient(#dcdcdc 1px, transparent 1px);
+        background-size: 20px 20px; /* Họa tiết chấm nhỏ li ti giả giấy */
+      }
+
+      h1,
+      h2,
+      h3,
+      .logo,
+      .nav-link,
+      .cta-button,
+      .product-tag {
+        font-family: "Playfair Display", serif; /* Font tiêu đề sang trọng */
+      }
+
+      a {
+        text-decoration: none;
+        transition: all 0.3s ease;
       }
 
       /* ===== HEADER ===== */
       header {
-        /* Gradient sang trọng: vàng - cam - xanh */
-        background: linear-gradient(
-          135deg,
-          #f5e6d3 0%,
-          #e8d4b8 50%,
-          #d4a574 100%
-        );
-        padding: 1vh 1.5rem;
+        background: rgba(249, 245, 235, 0.95);
+        padding: 1.2rem 2rem;
         text-align: center;
         position: sticky;
         top: 0;
         z-index: 100;
-        box-shadow: 0 6px 20px rgba(209, 165, 116, 0.2);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        /* Header sẽ ẩn/hiện khi scroll */
+        border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+        box-shadow: 0 4px 20px rgba(93, 64, 55, 0.05);
+        transition: transform 0.3s ease;
+        backdrop-filter: blur(5px);
       }
 
       header.hide {
@@ -76,51 +79,79 @@
 
       .logo {
         display: flex;
-        flex-direction: row;
         justify-content: center;
         align-items: center;
-        font-size: 2rem;
+        font-size: 2.2rem;
         font-weight: 900;
-        color: var(--text-dark);
-        letter-spacing: 2px;
-        margin-bottom: 0.5rem;
-        background: linear-gradient(135deg, #c17a5e 0%, #a8d5ba 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }      
+        color: var(--vintage-green);
+        letter-spacing: 3px;
+        margin-bottom: 0.2rem;
+        text-transform: uppercase;
+      }
+
       .logo-image {
-        width: 4vh;
-        height: 4vh;
-        background: linear-gradient(135deg, #c17a5e 0%, #a8d5ba 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        width: 45px;
+        height: 45px;
+        margin-left: 10px;
+        filter: sepia(0.3); /* Làm ảnh logo trông cổ hơn */
       }
 
       .tagline {
-        font-size: 0.95rem;
-        color: var(--text-light);
-        font-weight: 500;
+        font-family: "Lora", serif;
+        font-style: italic;
+        font-size: 1rem;
+        color: var(--deep-bronze);
+        margin-bottom: 1rem;
+      }
+
+      /* ===== NAVIGATION ===== */
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        border-top: 1px solid rgba(197, 160, 89, 0.2);
+        padding-top: 1rem;
+      }
+
+      nav a {
+        color: var(--text-muted);
+        font-weight: 700;
+        font-size: 1rem;
+        padding: 0.5rem 0;
+        position: relative;
+        text-transform: uppercase;
         letter-spacing: 1px;
       }
 
-      .nav-link{
-        color: var(--text-dark);
+      nav a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background-color: var(--antique-gold);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
       }
 
-      .nav-link:active{
-        color: var(--primary-gold);
+      nav a:hover,
+      nav a.active {
+        color: var(--vintage-green);
       }
-      /* ===== HAMBURGER MENU ===== */
+
+      nav a:hover::after,
+      nav a.active::after {
+        width: 100%;
+      }
+
+      /* HAMBURGER */
       .hamburger {
         display: none;
         flex-direction: column;
         cursor: pointer;
         background: none;
         border: none;
-        padding: 0 0.5rem 0.5rem;
-        gap: 6px;
         position: absolute;
         top: 1.5rem;
         right: 1.5rem;
@@ -128,487 +159,320 @@
       }
 
       .hamburger span {
-        width: 28px;
+        width: 30px;
         height: 3px;
-        background: var(--text-dark);
-        border-radius: 2px;
-        transition: all 0.3s ease;
+        background: var(--vintage-green);
+        margin: 3px 0;
+        transition: 0.3s;
       }
 
-      .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(2.575px, 9.935px);
-      }
-
-      .hamburger.active span:nth-child(2) {
-        opacity: 0;
-      }
-
-      .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(2.575px, -9.935px);
-      }
-
-      /* ===== NAVIGATION ===== */
-      nav {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-      }
-
+      /* Mobile Menu Styling */
       nav.mobile-open {
-        /* Menu mobile mở */
         display: flex;
         flex-direction: column;
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
-        background: linear-gradient(135deg, #f5e6d3 0%, #e8d4b8 100%);
-        padding: 1.5rem;
-        gap: 1rem;
-        box-shadow: 0 8px 20px rgba(209, 165, 116, 0.2);
+        background: var(--bg-paper);
+        padding: 2rem;
+        border-bottom: 3px solid var(--antique-gold);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       }
 
-      nav a {
-        text-decoration: none;
-        color: var(--text-dark);
-        font-weight: 700;
-        font-size: 0.9rem;
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        transition: all 0.3s ease;
-        cursor: pointer;
-      }
-
-      nav a:hover,
-      nav a.active {
-        background: linear-gradient(
-          135deg,
-          rgba(193, 122, 94, 0.2) 0%,
-          rgba(125, 190, 158, 0.2) 100%
-        );
-        color: var(--accent-warm);
-      }
-
-      /* ===== MAIN CONTAINER ===== */
+      /* ===== MAIN LAYOUT ===== */
       main {
-        max-width: 1000px;
+        max-width: 1100px;
         margin: 0 auto;
-        padding: 0 1rem;
-        padding-top: 2rem;
+        padding: 2rem 1.5rem;
       }
 
       section {
-        margin: 3rem 0;
-        animation: fadeInUp 0.8s ease-out;
+        margin: 4rem 0;
+        opacity: 0; /* Cho JS xử lý fade-in */
       }
 
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* ===== SECTION TITLE ===== */
+      /* ===== SECTION TITLE DECORATION ===== */
       .section-title {
-        font-size: 2.2rem;
-        font-weight: 900;
-        background: linear-gradient(135deg, #c17a5e 0%, #a8d5ba 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        font-size: 2.8rem;
+        color: var(--vintage-green);
         text-align: center;
-        margin-bottom: 2.5rem;
-        letter-spacing: 1px;
+        margin-bottom: 3rem;
+        font-weight: 700;
         position: relative;
-        padding-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .section-title::before {
+        content: "✦"; /* Biểu tượng trang trí */
+        font-size: 1.5rem;
+        color: var(--antique-gold);
+        margin-bottom: 10px;
+        display: block;
       }
 
       .section-title::after {
         content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(90deg, #c17a5e 0%, #a8d5ba 100%);
-        border-radius: 2px;
+        width: 100px;
+        height: 3px;
+        background: double var(--antique-gold); /* Đường kẻ đôi */
+        border-top: 1px solid var(--antique-gold);
+        border-bottom: 1px solid var(--antique-gold);
+        margin-top: 15px;
       }
 
-      /* ===== INTRODUCTION SECTION ===== */
+      /* ===== INTRO CARD ===== */
       .intro-card {
-        /* Gradient sang trọng cho intro card */
-        background: linear-gradient(
-          135deg,
-          #f5e6d3 0%,
-          rgba(212, 165, 116, 0.3) 50%,
-          rgba(168, 213, 186, 0.3) 100%
-        );
-        border-radius: 20px;
-        padding: 2.5rem 1.5rem;
+        background: var(--card-bg);
+        border: 1px solid var(--antique-gold);
+        /* Hiệu ứng khung tranh kép */
+        outline: 1px solid var(--antique-gold);
+        outline-offset: 6px;
+        margin: 10px; /* Chừa chỗ cho outline */
+
+        padding: 3rem;
         text-align: center;
-        box-shadow: 0 10px 30px rgba(209, 165, 116, 0.15);
-        transition: transform 0.3s ease;
-        border: 2px solid rgba(193, 122, 94, 0.1);
-      }
-
-      .intro-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(209, 165, 116, 0.2);
-      }
-
-      .intro-card p {
-        font-size: 1.1rem;
-        color: var(--text-light);
-        line-height: 1.8;
-        margin-bottom: 1.5rem;
-      }
-
-      .intro-image {
-        object-fit: cover;
-        width: 100%;
-        max-width: 400px;
-        height: 250px;
-        background: linear-gradient(
-          135deg,
-          #d4a574 0%,
-          #c17a5e 50%,
-          #a8d5ba 100%
-        );
-        border-radius: 15px;
-        margin: 1.5rem auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--neutral-white);
-        font-weight: 700;
-        font-size: 3rem;
-        box-shadow: 0 8px 20px rgba(193, 122, 94, 0.25);
-      }
-
-      /* ===== PRODUCTS SECTION ===== */
-      .products-grid {
-        display: grid;
-        grid-template-columns: repeat(1fr, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-bottom: 2rem;
-      }
-
-      .product-card {
-        background: var(--neutral-white);
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 6px 20px rgba(209, 165, 116, 0.12);
-        transition: all 0.3s ease;
-        border: 2px solid rgba(209, 165, 116, 0.1);
+        box-shadow: 0 10px 30px rgba(140, 107, 62, 0.1);
         position: relative;
       }
 
-      .product-card::before {
-        /* Thêm detail: glow effect ấm cúng */
-        content: "";
+      /* Họa tiết góc khung */
+      .intro-card::before,
+      .intro-card::after {
+        content: "✻";
         position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(193, 122, 94, 0.05) 0%,
-          transparent 100%
-        );
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
+        color: var(--antique-gold);
+        font-size: 1.5rem;
+      }
+      .intro-card::before {
+        top: 10px;
+        left: 10px;
+      }
+      .intro-card::after {
+        bottom: 10px;
+        right: 10px;
+      }
+
+      .intro-image {
+        width: 100%;
+        max-width: 500px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 4px;
+        margin: 0 auto 2rem;
+        border: 5px solid white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        filter: contrast(0.95) sepia(0.2); /* Bộ lọc màu ảnh cũ */
+        transition: filter 0.3s;
+      }
+
+      .intro-image:hover {
+        filter: none;
+      }
+
+      .intro-card p {
+        font-size: 1.15rem;
+        color: var(--text-muted);
+        max-width: 800px;
+        margin: 0 auto 1.5rem;
+      }
+
+      /* ===== PRODUCTS (GALLERY STYLE) ===== */
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+      }
+
+      .product-card {
+        background: var(--card-bg);
+        padding: 1.5rem; /* Tạo khung trắng bo quanh ảnh */
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        transition: transform 0.4s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
       }
 
       .product-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 32px rgba(209, 165, 116, 0.2);
-        border-color: #d4a574;
-      }
-
-      .product-card:hover::before {
-        opacity: 1;
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(197, 160, 89, 0.2);
       }
 
       .product-image {
-        object-fit: cover;
         width: 100%;
-        height: 36vh;
-        background: linear-gradient(135deg, #f5e6d3 0%, #e8d4b8 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 4rem;
-        color: rgba(193, 122, 94, 0.2);
+        height: 300px;
+        object-fit: cover;
+        border: 1px solid #eee;
+        filter: sepia(0.15); /* Màu ấm nhẹ */
       }
 
       .product-info {
-        padding: 1.5rem;
+        text-align: center;
+        padding-top: 1.5rem;
       }
 
       .product-name {
-        font-size: 1.3rem;
-        font-weight: 900;
-        background: linear-gradient(135deg, #c17a5e 0%, #a8d5ba 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 0.8rem;
-        letter-spacing: 0.5px;
+        font-size: 1.6rem;
+        color: var(--warm-brown);
+        margin-bottom: 0.5rem;
+        font-weight: 700;
       }
 
       .product-desc {
-        font-size: 0.95rem;
-        color: var(--text-light);
-        line-height: 1.6;
-        margin-bottom: 1rem;
+        font-size: 1rem;
+        color: var(--text-muted);
+        font-style: italic;
+        margin-bottom: 1.2rem;
       }
 
       .product-tag {
         display: inline-block;
-        background: linear-gradient(
-          135deg,
-          rgba(193, 122, 94, 0.15) 0%,
-          rgba(125, 190, 158, 0.15) 100%
-        );
-        color: #c17a5e;
-        padding: 0.4rem 0.9rem;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        border: 1px solid rgba(193, 122, 94, 0.2);
+        padding: 0.3rem 1.2rem;
+        border: 1px solid var(--vintage-green);
+        color: var(--vintage-green);
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        background: rgba(74, 103, 85, 0.05);
+        border-radius: 2px;
       }
 
-      /* ===== PROCESS SECTION ===== */
+      /* ===== PROCESS (TIMELINE VINTAGE) ===== */
       .process-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
+        position: relative;
       }
 
       .process-card {
-        background: var(--neutral-white);
-        border-radius: 15px;
-        padding: 2rem 1.5rem;
-        text-align: center;
-        box-shadow: 0 6px 20px rgba(209, 165, 116, 0.08);
-        border: 2px solid rgba(209, 165, 116, 0.1);
-        transition: all 0.3s ease;
+        background: transparent;
+        border-left: 3px solid var(--antique-gold);
+        padding: 1rem 1.5rem;
         position: relative;
-        overflow: hidden;
-      }
-
-      .process-card::after {
-        /* Thêm detail: glow effect khi hover */
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          135deg,
-          rgba(193, 122, 94, 0.05) 0%,
-          transparent 100%
-        );
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
+        transition: all 0.3s ease;
       }
 
       .process-card:hover {
-        transform: translateY(-6px);
-        border-color: #d4a574;
-        box-shadow: 0 10px 28px rgba(209, 165, 116, 0.2);
-      }
-
-      .process-card:hover::after {
-        opacity: 1;
+        background: rgba(255, 255, 255, 0.5);
+        border-left-color: var(--vintage-green);
       }
 
       .process-step {
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #d4a574 0%, #c17a5e 100%);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.8rem;
+        font-family: "Playfair Display", serif;
+        font-size: 3rem;
+        line-height: 1;
+        color: rgba(197, 160, 89, 0.3); /* Số mờ làm nền */
+        position: absolute;
+        top: 0;
+        right: 10px;
         font-weight: 900;
-        color: var(--neutral-white);
-        margin: 0 auto 1.5rem;
-        box-shadow: 0 6px 16px rgba(193, 122, 94, 0.3);
+        transition: color 0.3s;
+      }
+
+      .process-card:hover .process-step {
+        color: rgba(74, 103, 85, 0.2);
       }
 
       .process-title {
-        font-size: 1.2rem;
-        font-weight: 900;
-        color: var(--text-dark);
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        color: var(--warm-brown);
         margin-bottom: 0.8rem;
-        letter-spacing: 0.5px;
-      }
-
-      .process-desc {
-        font-size: 0.95rem;
-        color: var(--text-light);
-        line-height: 1.6;
-      }
-
-      /* ===== CTA SECTION ===== */
-      .cta-section {
-        /* Gradient sang trọng cho CTA */
-        background: linear-gradient(
-          135deg,
-          #d4a574 0%,
-          #c17a5e 50%,
-          #a8d5ba 100%
-        );
-        border-radius: 20px;
-        padding: 3rem 1.5rem;
-        text-align: center;
-        margin: 3rem 0;
-        color: var(--neutral-white);
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 12px 40px rgba(193, 122, 94, 0.3);
-      }
-
-      .cta-section::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        right: -10%;
-        width: 300px;
-        height: 300px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-      }
-
-      .cta-section::after {
-        /* Thêm detail: decorative element */
-        content: "";
-        position: absolute;
-        bottom: -50%;
-        left: -5%;
-        width: 250px;
-        height: 250px;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 50%;
-      }
-
-      .cta-content {
+        font-weight: 700;
         position: relative;
         z-index: 1;
       }
 
-      .cta-title {
-        font-size: 1.8rem;
-        font-weight: 900;
-        margin-bottom: 1rem;
-        letter-spacing: 1px;
-        animation: pulse 2s ease-in-out infinite;
+      .process-desc {
+        font-size: 1rem;
+        color: var(--text-muted);
       }
 
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.85;
-        }
+      /* ===== CTA SECTION ===== */
+      .cta-section {
+        background-color: var(--vintage-green);
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%236e8c7b' fill-opacity='0.2' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        border-radius: 8px; /* Bo góc ít hơn */
+        padding: 4rem 2rem;
+        text-align: center;
+        color: #f1f1f1;
+        border: 4px double var(--antique-gold); /* Viền vàng đôi */
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-title {
+        font-size: 2.2rem;
+        color: var(--bg-paper);
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       }
 
       .cta-subtitle {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-        opacity: 0.95;
-        font-weight: 500;
+        font-size: 1.1rem;
+        font-family: "Lora", serif;
+        font-style: italic;
+        opacity: 0.9;
+        margin-bottom: 2.5rem;
       }
 
       .cta-button {
         display: inline-block;
-        background: var(--neutral-white);
-        color: #c17a5e;
-        padding: 1rem 2.5rem;
-        border: none;
-        border-radius: 50px;
-        font-size: 1rem;
-        font-weight: 900;
+        background: var(--bg-paper);
+        color: var(--vintage-green);
+        padding: 1rem 3rem;
+        border: 1px solid var(--antique-gold);
+        font-size: 1.1rem;
+        font-weight: 700;
         cursor: pointer;
         transition: all 0.3s ease;
-        letter-spacing: 0.5px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
       }
 
       .cta-button:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      }
-
-      .cta-button:active {
-        transform: scale(0.98);
+        background: var(--antique-gold);
+        color: white;
       }
 
       /* ===== FOOTER ===== */
       footer {
-        background: linear-gradient(135deg, #f5e6d3 0%, #e8d4b8 100%);
-        padding: 2rem 1.5rem;
+        background: #ece5d5;
+        padding: 3rem 1.5rem;
         text-align: center;
-        border-top: 3px solid rgba(209, 165, 116, 0.2);
-        margin-top: 3rem;
-      }
-
-      .footer-content {
-        max-width: 1000px;
-        margin: 0 auto;
-      }
-
-      .footer-text {
-        color: var(--text-light);
-        font-size: 0.95rem;
-        margin-bottom: 1rem;
-        line-height: 1.6;
+        border-top: 1px solid rgba(197, 160, 89, 0.4);
+        color: var(--text-muted);
       }
 
       .footer-links {
         display: flex;
         justify-content: center;
-        gap: 1.5rem;
-        flex-wrap: wrap;
+        gap: 2rem;
         margin-top: 1.5rem;
       }
 
       .footer-links a {
-        color: #c17a5e;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 0.9rem;
-        transition: color 0.3s ease;
+        color: var(--deep-bronze);
+        font-weight: 600;
+        font-family: "Playfair Display", serif;
       }
 
       .footer-links a:hover {
-        color: var(--text-dark);
-      }
-
-      /* ===== SCROLL INDICATOR ===== */
-      .scroll-indicator {
-        text-align: center;
-        margin: 2rem 0;
-        animation: bounce 2s infinite;
+        color: var(--vintage-green);
+        font-style: italic;
       }
 
       .scroll-indicator span {
-        display: inline-block;
-        color: #c17a5e;
-        font-size: 1.5rem;
+        color: var(--antique-gold);
+        font-size: 2rem;
+        animation: float 2s ease-in-out infinite;
       }
 
-      @keyframes bounce {
+      @keyframes float {
         0%,
         100% {
           transform: translateY(0);
@@ -618,253 +482,244 @@
         }
       }
 
-      /* ===== RESPONSIVE DESIGN ===== */
+      /* RESPONSIVE */
       @media (max-width: 768px) {
-        header {
-          padding: 1.5rem 1rem;
+        .logo {
+          font-size: 1.8rem;
         }
-
-        .hamburger {
-          display: flex;
+        .section-title {
+          font-size: 2.2rem;
         }
-
+        .intro-card {
+          padding: 1.5rem;
+          margin: 0;
+          outline: none;
+          border: 1px solid var(--antique-gold);
+        }
         nav {
           display: none;
         }
-
+        .hamburger {
+          display: flex;
+        }
         nav.mobile-open {
           display: flex !important;
         }
-
-        .section-title {
-          font-size: 1.8rem;
-        }
-
-        .logo {
-          font-size: 1.6rem;
-        }
-
-        .cta-title {
-          font-size: 1.4rem;
-        }
-
-        .products-grid {
-          gap: 1.5rem;
-        }
-
-        section {
-          margin: 2rem 0;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .section-title {
-          font-size: 1.5rem;
-          margin-bottom: 1.5rem;
-        }
-
-        .logo {
-          font-size: 1.4rem;
-        }
-
-        .cta-section {
-          padding: 2rem 1rem;
-        }
-
-        .cta-title {
-          font-size: 1.2rem;
-        }
-
-        .intro-card {
-          padding: 1.5rem 1rem;
-        }
-
-        header {
-          padding: 1.2rem 1rem;
-        }
-      }
-
-      /* ===== SMOOTH TRANSITIONS ===== */
-      .fade-in {
-        opacity: 0;
-        animation: fadeInUp 0.6s ease-out forwards;
       }
     </style>
   </head>
   <body>
-    <!-- HEADER -->
     <header id="header">
-      <div class="logo"><p>SOAP</p> <img src="logo.png" class="logo-image" alt=""></div>
+      <div class="logo">
+        <p>SOAP</p>
+        <img src="media/logo.png" class="logo-image" alt="Logo" />
+      </div>
       <p class="tagline">Xà phòng long lanh - Môi trường trong lành</p>
-      <!-- Thêm hamburger menu -->
+
       <button class="hamburger" id="hamburger">
         <span></span>
         <span></span>
         <span></span>
       </button>
+
       <nav id="nav-menu">
-        <a href="#intro" class="nav-link active">GIỚI THIỆU</a>
-        <a href="#products" class="nav-link">SẢN PHẨM</a>
-        <a href="#process" class="nav-link">QUY TRÌNH</a>
+        <a href="#intro" class="nav-link active">Giới Thiệu</a>
+        <a href="#products" class="nav-link">Sản Phẩm</a>
+        <a href="#process" class="nav-link">Quy Trình</a>
       </nav>
     </header>
 
-    <!-- MAIN CONTENT -->
     <main>
-      <!-- INTRODUCTION SECTION -->
       <section id="intro">
-        <h2 class="section-title">✨ Giới Thiệu</h2>
+        <h2 class="section-title">Nhất Thiên Địa</h2>
         <div class="intro-card">
           <img
             class="intro-image"
-            src="gioithieu.jpg"
-            alt=""
+            src="media/gioithieu.jpg"
+            alt="Giới thiệu dự án"
           />
           <p>
-            Những chiếc xà phòng mang thông điệp xanh đến với mọi gia đình. Với tình yêu môi trường và mục tiêu giảm thiểu rác thải dầu ăn sử dụng nhiều trong sinh hoạt hằng ngày, Bóng Xà Phòng nhóm chúng em hân hạnh mang đến cho mọi người bộ sưu tập Nhất Thiên Địa, được lấy ý tưởng dựa trên sự tích Bánh chưng và Bánh dày của người Việt!
+            Những chiếc xà phòng mang thông điệp xanh đến với mọi gia đình. Với
+            tình yêu môi trường và mục tiêu giảm thiểu rác thải dầu ăn sử dụng
+            nhiều trong sinh hoạt hằng ngày, <strong>Bóng Xà Phòng</strong> nhóm
+            chúng em hân hạnh mang đến cho mọi người bộ sưu tập
+            <em>Nhất Thiên Địa</em>, được lấy ý tưởng dựa trên sự tích Bánh
+            chưng và Bánh dày của người Việt!
           </p>
-          <p style="font-size: 0.95rem; opacity: 0.85">
-            Không cần là thợ thủ công, một chút ứng dụng hóa học cũng có thể thay đổi thế giới💚
+          <p
+            style="
+              font-size: 1rem;
+              font-style: italic;
+              color: var(--deep-bronze);
+            "
+          >
+            "Không cần là thợ thủ công, một chút ứng dụng hóa học cũng có thể
+            thay đổi thế giới."
           </p>
         </div>
-        <div class="scroll-indicator">
-          <span>↓</span>
+        <div
+          class="scroll-indicator"
+          style="text-align: center; margin-top: 2rem"
+        >
+          <span>❧</span>
         </div>
       </section>
 
-      <!-- PRODUCTS SECTION -->
       <section id="products">
-        <h2 class="section-title">Bộ Sưu Tập Sản Phẩm</h2>
+        <h2 class="section-title">Bộ Sưu Tập</h2>
         <div class="products-grid">
-          <!-- Product 1 -->
-<!-- Product 1 -->
-<div class="product-card">
-  <img class="product-image" src="banhday.jpg" alt="" />
-</div>
-<div class="product-info">
-  <div class="product-name">Bánh Dày</div>
-  <p class="product-desc">
-    Bánh Dày mang dáng tròn tượng trưng cho bầu trời trong truyền thuyết Lang Liêu. Hình tròn ấy gợi nhắc vòng tuần hoàn tự nhiên – nơi mọi thứ được tái sinh nếu con người biết trân trọng. Sản phẩm được làm từ nguyên liệu tái chế thân thiện môi trường, như lời khẳng định rằng sự bền vững bắt đầu từ những lựa chọn nhỏ mỗi ngày.
-  </p>
-  <span class="product-tag">TRỜI</span>
-</div>
+          <div class="product-card">
+            <img class="product-image" src="media/banhday.jpg" alt="Bánh Dày" />
+            <div class="product-info">
+              <div class="product-name">Bánh Dày</div>
+              <p class="product-desc">
+                Bánh Dày hình tròn tượng trưng cho bầu trời. Gợi nhắc vòng tuần
+                hoàn tự nhiên – nơi mọi thứ được tái sinh nếu con người biết
+                trân trọng.
+              </p>
+              <span class="product-tag">Trời</span>
+            </div>
+          </div>
 
-<!-- Product 2 -->
-<div class="product-card">
-  <img class="product-image" src="banhtammoc.jpg" alt="" />
-</div>
-<div class="product-info">
-  <div class="product-name">Bánh Tâm Mộc</div>
-  <p class="product-desc">
-    Bánh Tâm Mộc lấy hình trái tim để gợi lên tinh thần gắn kết giữa con người và thiên nhiên. Tên gọi “Tâm Mộc” gợi nhớ phẩm chất mộc mạc, thuần khiết trong văn hóa Việt. Mỗi lần sử dụng giống như gửi một nhịp yêu thương trở lại môi trường, nuôi dưỡng lối sống xanh một cách nhẹ nhàng và tự nhiên.
-  </p>
-  <span class="product-tag">CON TIM</span>
-</div>
+          <div class="product-card">
+            <img
+              class="product-image"
+              src="media/banhtammoc.jpg"
+              alt="Bánh Tâm Mộc"
+            />
+            <div class="product-info">
+              <div class="product-name">Bánh Tâm Mộc</div>
+              <p class="product-desc">
+                Bánh Tâm Mộc hình trái tim gợi lên sự gắn kết. Mỗi lần sử dụng
+                giống như gửi một nhịp yêu thương trở lại môi trường, nuôi dưỡng
+                lối sống xanh.
+              </p>
+              <span class="product-tag">Con Tim</span>
+            </div>
+          </div>
 
-<!-- Product 3 -->
-<div class="product-card">
-  <img class="product-image" src="banhchung.jpg" alt="" />
-</div>
-<div class="product-info">
-  <div class="product-name">Bánh Chưng</div>
-  <p class="product-desc">
-    Bánh Chưng với hình vuông tượng trưng cho đất theo quan niệm dân gian. Từ lớp vỏ xanh của lá dong đến tinh thần kính trọng đất mẹ, sản phẩm khơi lại thông điệp sống hòa hợp với tự nhiên. Mỗi chiếc như một lời nhắc giữ gìn môi trường – nền tảng nuôi dưỡng mọi sự sống.
-  </p>
-  <span class="product-tag">ĐẤT</span>
-</div>
-
-      <!-- PROCESS SECTION -->
-      <section id="process">
-        <h2 class="section-title">🔧 Tiến trình dự án</h2>
-      <div class="process-container">
-        <div class="process-card">
-          <div class="process-step">1</div>
-          <div class="process-title">Bàn bạc kinh phí</div>
-          <p class="process-desc">
-            Ngay sau buổi thuyết trình, cả nhóm ngồi lại để chốt những khoản cần chi, lựa chọn dụng cụ phù hợp và phân chia công việc cho chặng đường sắp tới.
-          </p>
+          <div class="product-card">
+            <img
+              class="product-image"
+              src="media/banhchung.jpg"
+              alt="Bánh Chưng"
+            />
+            <div class="product-info">
+              <div class="product-name">Bánh Chưng</div>
+              <p class="product-desc">
+                Bánh Chưng hình vuông tượng trưng cho đất mẹ. Từ lớp vỏ xanh đến
+                tinh thần kính trọng đất, sản phẩm khơi lại thông điệp sống hòa
+                hợp.
+              </p>
+              <span class="product-tag">Đất</span>
+            </div>
+          </div>
         </div>
-
-        <div class="process-card">
-          <div class="process-step">2</div>
-          <div class="process-title">Thu thập dầu thừa</div>
-          <p class="process-desc">
-            Mỗi thành viên bắt đầu gom góp dầu ăn đã qua sử dụng từ gia đình và hàng xóm, vừa hồi hộp vừa lo lắng không biết lượng thu được có đủ cho các thử nghiệm hay không.
-          </p>
-        </div>
-
-        <div class="process-card">
-          <div class="process-step">3</div>
-          <div class="process-title">Thí nghiệm lọc dầu</div>
-          <p class="process-desc">
-            Từ những mẻ dầu đặc quánh, nhóm thử nhiều cách lọc khác nhau. Lọc than khiến dầu đen kịt, lọc qua giấy thì chậm, nhưng từng giọt dầu trong dần lên khiến mọi nỗ lực trở nên đáng giá.
-          </p>
-        </div>
-
-        <div class="process-card">
-          <div class="process-step">4</div>
-          <div class="process-title">Thí nghiệm làm xà phòng</div>
-          <p class="process-desc">
-            Đây là giai đoạn thử thách nhất. Có mẻ quá mềm, có mẻ không đông, có mẻ tách nước. Cả nhóm vừa thất vọng vừa kiên trì điều chỉnh từng chút để tìm được công thức ổn định.
-          </p>
-        </div>
-
-        <div class="process-card">
-          <div class="process-step">5</div>
-          <div class="process-title">Chuẩn bị banner và trang trí triển lãm</div>
-          <p class="process-desc">
-            Nghĩ rằng sẽ mất nhiều thời gian, nhưng mọi thứ lại hoàn thiện nhanh hơn mong đợi khi các ý tưởng được kết nối mạch lạc.
-          </p>
-        </div>
-
-        <div class="process-card">
-          <div class="process-step">6</div>
-          <div class="process-title">Chuẩn bị cho ngày triển lãm</div>
-          <p class="process-desc">
-            Cả nhóm rà soát lại toàn bộ sản phẩm, trưng bày và nội dung trình bày, đồng thời chuẩn bị tinh thần cho ngày chia sẻ thành quả sau nhiều tuần nỗ lực.
-          </p>
-        </div>
-      </div>
-
       </section>
 
-      <!-- CTA SECTION -->
-      <section class="cta-section">
+      <section id="process">
+        <h2 class="section-title">Hành Trình Dự Án</h2>
+        <div class="process-container">
+          <div class="process-card">
+            <div class="process-step">I</div>
+            <div class="process-title">Bàn bạc kinh phí</div>
+            <p class="process-desc">
+              Ngay sau buổi thuyết trình, cả nhóm ngồi lại để chốt những khoản
+              cần chi, lựa chọn dụng cụ phù hợp và phân chia công việc cho chặng
+              đường sắp tới.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-step">II</div>
+            <div class="process-title">Thu thập dầu thừa</div>
+            <p class="process-desc">
+              Mỗi thành viên bắt đầu gom góp dầu ăn đã qua sử dụng từ gia đình
+              và hàng xóm, vừa hồi hộp vừa lo lắng không biết lượng thu được có
+              đủ cho các thử nghiệm hay không.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-step">III</div>
+            <div class="process-title">Thí nghiệm lọc dầu</div>
+            <p class="process-desc">
+              Từ những mẻ dầu đặc quánh, nhóm thử nhiều cách lọc khác nhau. Lọc
+              than khiến dầu đen kịt, lọc qua giấy thì chậm, nhưng từng giọt dầu
+              trong dần lên khiến mọi nỗ lực trở nên đáng giá.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-step">IV</div>
+            <div class="process-title">Chế tạo xà phòng</div>
+            <p class="process-desc">
+              Đây là giai đoạn thử thách nhất. Có mẻ quá mềm, có mẻ không đông,
+              có mẻ tách nước. Cả nhóm vừa thất vọng vừa kiên trì điều chỉnh
+              từng chút để tìm được công thức ổn định.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-step">V</div>
+            <div class="process-title">Hoàn thiện trưng bày</div>
+            <p class="process-desc">
+              Nghĩ rằng sẽ mất nhiều thời gian, nhưng mọi thứ lại hoàn thiện
+              nhanh hơn mong đợi khi các ý tưởng được kết nối mạch lạc.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-step">VI</div>
+            <div class="process-title">Ngày triển lãm</div>
+            <p class="process-desc">
+              Cả nhóm rà kiểm tra sản phẩm, trưng bày và nội dung trình bày,
+              đồng thời chuẩn bị tinh thần cho ngày chia sẻ thành quả sau nhiều
+              tuần nỗ lực.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-section" onclick="handleCTA()">
         <div class="cta-content">
-          <h2 class="cta-title">🌱 Cùng Tái Chế Với Chúng Mình Nhé! 🌱</h2>
+          <h2 class="cta-title">Cùng Tái Chế, Cùng Sống Xanh!</h2>
           <p class="cta-subtitle">
             Mỗi lần bạn chọn xà phòng tự nhiên, bạn đang chọn cho một hành tinh
             xanh hơn. Cùng nhau, chúng ta tạo nên sự thay đổi!
           </p>
+          <a class="cta-button" target="_blank" href="https://drive.google.com/file/d/1mLFkHSOg-qJ1nxyknegUdX4gBDiBpsgi/view?usp=sharing">Video hành trình chúng mình</a>
         </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
     <footer>
       <div class="footer-content">
-        <p class="footer-text">✨ Dự án xà phòng của Bóng Xà Phòng ✨</p>
-        <p class="footer-text" style="text-align: center">
-          Được hỗ trợ bởi AI và các phần mềm hỗ trợ khác
-          <br /><strong>Facebook: </strong
-          ><a style="color: #c17a5e;"
+        <h3 style="margin-bottom: 1rem; color: var(--vintage-green)">
+          Dự án của Bóng Xà Phòng
+        </h3>
+        <p class="footer-text">
+          Được thực hiện với trái tim yêu môi trường.<br />
+          Hỗ trợ kỹ thuật bởi AI & Team.
+        </p>
+        <p style="margin-top: 1rem">
+          <strong>Facebook:</strong>
+          <a
             href="https://www.facebook.com/profile.php?id=61581767126157"
             target="_blank"
             >Bóng Xà Phòng</a
-          >
-          <br /><strong>Liên hệ(Trái Bơ): </strong
-          ><a style="color: #c17a5e;" href="tel:0901414708">090 141 4708</a>
+          ><br />
+          <strong>Hotline (Trái Bơ):</strong>
+          <a href="tel:0901414708">090 141 4708</a>
         </p>
         <div class="footer-links">
           <a href="#intro">Giới Thiệu</a>
           <a href="#products">Sản Phẩm</a>
           <a href="#process">Quy Trình</a>
-          <a href="#contact">Liên Hệ</a>
         </div>
       </div>
     </footer>
 
-    <!-- JAVASCRIPT -->
     <script>
       const hamburger = document.getElementById("hamburger");
       const navMenu = document.getElementById("nav-menu");
@@ -874,7 +729,6 @@
         navMenu.classList.toggle("mobile-open");
       });
 
-      // Close menu when a link is clicked
       document.querySelectorAll(".nav-link").forEach((link) => {
         link.addEventListener("click", (e) => {
           e.preventDefault();
@@ -900,28 +754,16 @@
           window.pageYOffset || document.documentElement.scrollTop;
 
         if (scrollTop > lastScrollTop && scrollTop > headerHeight) {
-          // Scrolling DOWN
           header.classList.add("hide");
         } else {
-          // Scrolling UP
           header.classList.remove("hide");
         }
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
       });
 
-
-
-      // CTA Button handler
-      function handleCTA() {
-        alert(
-          "🌱 Cảm ơn bạn đã quan tâm! Hãy tham dự triễn lãm của chúng mình để khám phá những sản phẩm tuyệt vời. 💚"
-        );
-      }
-
-      // Add fade-in animation on scroll
       const observerOptions = {
         threshold: 0.1,
-        rootMargin: "0px 0px -100px 0px",
+        rootMargin: "0px 0px -50px 0px",
       };
 
       const observer = new IntersectionObserver((entries) => {
@@ -935,8 +777,8 @@
 
       document.querySelectorAll("section").forEach((section) => {
         section.style.opacity = "0";
-        section.style.transform = "translateY(20px)";
-        section.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        section.style.transform = "translateY(30px)";
+        section.style.transition = "opacity 0.8s ease, transform 0.8s ease";
         observer.observe(section);
       });
     </script>
